@@ -1,0 +1,787 @@
+ 	<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Support - Mexico</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #0022af;
+            --secondary: #015cfe;
+            --dark: #04006C;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f0f4f8;
+        }
+        
+        .bg-primary {
+            background-color: var(--primary);
+        }
+        
+        .bg-secondary {
+            background-color: var(--secondary);
+        }
+        
+        .bg-dark {
+            background-color: var(--dark);
+        }
+        
+        .text-primary {
+            color: var(--primary);
+        }
+        
+        .text-secondary {
+            color: var(--secondary);
+        }
+        
+        .text-dark {
+            color: var(--dark);
+        }
+        
+        .border-primary {
+            border-color: var(--primary);
+        }
+        
+        .border-secondary {
+            border-color: var(--secondary);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,34,175,0.3);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(1,92,254,0.3);
+        }
+        
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .card {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        
+        .status-green {
+            background-color: #10b981;
+        }
+        
+        .status-yellow {
+            background-color: #f59e0b;
+        }
+        
+        .status-red {
+            background-color: #ef4444;
+        }
+        
+        .team-card {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,34,175,0.15);
+        }
+        
+        .avatar-placeholder {
+            background: linear-gradient(135deg, var(--secondary), var(--dark));
+            color: white;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .hero-pattern {
+            background-color: #015cfe;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-[#0022af] to-[#015cfe] flex items-center justify-center text-white font-bold text-xl mr-3">IT</div>
+                    <div>
+                        <h1 class="text-xl font-bold text-[#04006C]">IT Support</h1>
+                        <p class="text-xs text-gray-500">Mexico Team</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#support" class="text-gray-600 hover:text-[#015cfe] font-medium transition">Support</a>
+                    <a href="#status" class="text-gray-600 hover:text-[#015cfe] font-medium transition">Status</a>
+                    <a href="#tech" class="text-gray-600 hover:text-[#015cfe] font-medium transition">Tech Support</a>
+                    <a href="#team" class="text-gray-600 hover:text-[#015cfe] font-medium transition">Our Team</a>
+                </div>
+                <button class="bg-[#0022af] text-white px-4 py-2 rounded-lg font-medium hover:bg-[#04006C] transition shadow-md hover:shadow-lg">
+                    Emergency Support
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-pattern py-16 md:py-24">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">Need IT Support?</h1>
+                    <p class="text-xl md:text-2xl text-white opacity-90 mb-8">Meet our friendly Mexico team ready to solve your tech problems</p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#support" class="bg-white text-[#04006C] px-6 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition shadow-lg hover:shadow-xl flex items-center">
+                            <span>Get Started</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <a href="#status" class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-[#015cfe] transition flex items-center">
+                            <span>Check Status</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="relative">
+                        <!-- SVG Illustration -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" class="w-full max-w-lg mx-auto">
+                            <defs>
+                                <linearGradient id="a" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.3"/>
+                                    <stop offset="100%" stop-color="#ffffff" stop-opacity="0.1"/>
+                                </linearGradient>
+                            </defs>
+                            <circle cx="250" cy="250" r="200" fill="url(#a)"/>
+                            <g fill="#ffffff" opacity="0.8">
+                                <circle cx="150" cy="150" r="30"/>
+                                <circle cx="350" cy="150" r="30"/>
+                                <circle cx="150" cy="350" r="30"/>
+                                <circle cx="350" cy="350" r="30"/>
+                                <circle cx="250" cy="250" r="50"/>
+                            </g>
+                            <g fill="none" stroke="#ffffff" stroke-width="4" opacity="0.6">
+                                <line x1="150" y1="150" x2="350" y2="150"/>
+                                <line x1="150" y1="150" x2="150" y2="350"/>
+                                <line x1="150" y1="150" x2="250" y2="250"/>
+                                <line x1="350" y1="150" x2="350" y2="350"/>
+                                <line x1="350" y1="150" x2="250" y2="250"/>
+                                <line x1="150" y1="350" x2="350" y2="350"/>
+                                <line x1="150" y1="350" x2="250" y2="250"/>
+                                <line x1="350" y1="350" x2="250" y2="250"/>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Service Status Section -->
+        <section id="status" class="bg-gray-50 py-12 md:py-16 mb-16">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="flex justify-between items-center mb-8">
+                    <h2 class="section-title text-2xl md:text-3xl font-bold text-[#04006C]">Service Status</h2>
+                    <span class="text-sm text-gray-500">Last updated: <span id="lastUpdated">Today, 10:30 AM</span></span>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md p-6 md:p-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="border border-gray-100 rounded-lg p-4 flex items-center justify-between bg-white shadow-sm hover:shadow-md transition">
+                            <div class="flex items-center">
+                                <span class="status-indicator status-green" id="networkStatus"></span>
+                                <div>
+                                    <span class="font-medium text-[#04006C]">Network</span>
+                                    <p class="text-xs text-gray-500 mt-1">Internet & Intranet</p>
+                                </div>
+                            </div>
+                            <span class="text-sm font-medium text-green-600" id="networkStatusText">Operational</span>
+                        </div>
+                        
+                        <div class="border border-gray-100 rounded-lg p-4 flex items-center justify-between bg-white shadow-sm hover:shadow-md transition">
+                            <div class="flex items-center">
+                                <span class="status-indicator status-green" id="emailStatus"></span>
+                                <div>
+                                    <span class="font-medium text-[#04006C]">Email Services</span>
+                                    <p class="text-xs text-gray-500 mt-1">Outlook & Exchange</p>
+                                </div>
+                            </div>
+                            <span class="text-sm font-medium text-green-600" id="emailStatusText">Operational</span>
+                        </div>
+                        
+                        <div class="border border-gray-100 rounded-lg p-4 flex items-center justify-between bg-white shadow-sm hover:shadow-md transition">
+                            <div class="flex items-center">
+                                <span class="status-indicator status-yellow" id="cloudStatus"></span>
+                                <div>
+                                    <span class="font-medium text-[#04006C]">Cloud Storage</span>
+                                    <p class="text-xs text-gray-500 mt-1">OneDrive & SharePoint</p>
+                                </div>
+                            </div>
+                            <span class="text-sm font-medium text-yellow-600" id="cloudStatusText">Minor Issues</span>
+                        </div>
+                        
+                        <div class="border border-gray-100 rounded-lg p-4 flex items-center justify-between bg-white shadow-sm hover:shadow-md transition">
+                            <div class="flex items-center">
+                                <span class="status-indicator status-green" id="vpnStatus"></span>
+                                <div>
+                                    <span class="font-medium text-[#04006C]">VPN Access</span>
+                                    <p class="text-xs text-gray-500 mt-1">Remote Connection</p>
+                                </div>
+                            </div>
+                            <span class="text-sm font-medium text-green-600" id="vpnStatusText">Operational</span>
+                        </div>
+                        
+                        <div class="border border-gray-100 rounded-lg p-4 flex items-center justify-between bg-white shadow-sm hover:shadow-md transition">
+                            <div class="flex items-center">
+                                <span class="status-indicator status-red" id="printStatus"></span>
+                                <div>
+                                    <span class="font-medium text-[#04006C]">Print Services</span>
+                                    <p class="text-xs text-gray-500 mt-1">Network Printers</p>
+                                </div>
+                            </div>
+                            <span class="text-sm font-medium text-red-600" id="printStatusText">Outage</span>
+                        </div>
+                        
+                        <div class="border border-gray-100 rounded-lg p-4 flex items-center justify-between bg-white shadow-sm hover:shadow-md transition">
+                            <div class="flex items-center">
+                                <span class="status-indicator status-green" id="phoneStatus"></span>
+                                <div>
+                                    <span class="font-medium text-[#04006C]">Phone System</span>
+                                    <p class="text-xs text-gray-500 mt-1">VoIP & Conference</p>
+                                </div>
+                            </div>
+                            <span class="text-sm font-medium text-green-600" id="phoneStatusText">Operational</span>
+                        </div>
+                    </div>
+                    
+                    
+                    </div>
+                </div>
+            </div>
+        </section>
+    <!-- Main Content -->
+    <main class="py-12 md:py-16">
+        <!-- Need IT Support Section -->
+        <section id="support" class="container mx-auto px-4 md:px-6 mb-16">
+            <h2 class="section-title text-2xl md:text-3xl font-bold text-[#04006C]">Contact Support</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="card bg-white shadow-md p-6 flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-full bg-[#0022af] bg-opacity-10 flex items-center justify-center mb-4">
+                        <i class="fas fa-phone text-[#0022af] text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-[#04006C] mb-3">Call Us</h3>
+                    <p class="text-gray-600 mb-6">Speak directly with our support team for immediate assistance</p>
+                    <button class="btn-primary rounded-lg py-3 px-6 font-medium w-full mt-auto">
+                        <i class="fas fa-phone-alt mr-2"></i> Call Support
+                    </button>
+                </div>
+                
+                <div class="card bg-white shadow-md p-6 flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-full bg-[#015cfe] bg-opacity-10 flex items-center justify-center mb-4">
+                        <i class="fas fa-comment-dots text-[#015cfe] text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-[#04006C] mb-3">Chat with Sheldon</h3>
+                    <p class="text-gray-600 mb-6">Start a live chat with our AI assistant for quick solutions</p>
+                    <button class="btn-secondary rounded-lg py-3 px-6 font-medium w-full mt-auto">
+                        <i class="fas fa-comment mr-2"></i> Start Chat
+                    </button>
+                </div>
+                
+                <div class="card bg-white shadow-md p-6 flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-full bg-[#04006C] bg-opacity-10 flex items-center justify-center mb-4">
+                        <i class="fas fa-envelope text-[#04006C] text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-[#04006C] mb-3">Email Us</h3>
+                    <p class="text-gray-600 mb-6">Send us an email and we'll respond within 24 hours</p>
+                    <button class="btn-primary rounded-lg py-3 px-6 font-medium w-full mt-auto">
+                        <i class="fas fa-envelope mr-2"></i> Send Email
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <!-- Get Tech Support Section -->
+        <section id="tech" class="container mx-auto px-4 md:px-6 mb-16">
+            <h2 class="section-title text-2xl md:text-3xl font-bold text-[#04006C]">Get Tech Support</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card bg-white shadow-md rounded-xl overflow-hidden">
+                    <div class="h-3 bg-gradient-to-r from-[#0022af] to-[#015cfe]"></div>
+                    <div class="p-6">
+                        <div class="w-14 h-14 rounded-full bg-[#0022af] bg-opacity-10 flex items-center justify-center mb-4">
+                            <i class="fas fa-clipboard-list text-[#0022af] text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-[#04006C] mb-3">Make a Request</h3>
+                        <p class="text-gray-600 mb-6">Submit a new support ticket for any IT issues you're experiencing</p>
+                        <ul class="mb-6 space-y-2">
+                            <li class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                Track request status
+                            </li>
+                            <li class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                Receive email updates
+                            </li>
+                            <li class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                Priority handling
+                            </li>
+                        </ul>
+                        <button class="btn-primary rounded-lg py-3 px-6 font-medium w-full">
+                            Create Ticket
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="card bg-white shadow-md rounded-xl overflow-hidden">
+                    <div class="h-3 bg-gradient-to-r from-[#015cfe] to-[#04006C]"></div>
+                    <div class="p-6">
+                        <div class="w-14 h-14 rounded-full bg-[#015cfe] bg-opacity-10 flex items-center justify-center mb-4">
+                            <i class="fas fa-book-open text-[#015cfe] text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-[#04006C] mb-3">Browse Knowledge</h3>
+                        <p class="text-gray-600 mb-6">Access our knowledge base for self-help guides and tutorials</p>
+                        <ul class="mb-6 space-y-2">
+                            <li class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                Step-by-step guides
+                            </li>
+                            <li class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                Video tutorials
+                            </li>
+                            <li class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                Troubleshooting tips
+                            </li>
+                        </ul>
+                        <button class="btn-secondary rounded-lg py-3 px-6 font-medium w-full">
+                            View Articles
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="card bg-white shadow-md rounded-xl overflow-hidden">
+                    <div class="h-3 bg-gradient-to-r from-[#04006C] to-[#0022af]"></div>
+                    <div class="p-6">
+                        <div class="w-14 h-14 rounded-full bg-[#04006C] bg-opacity-10 flex items-center justify-center mb-4">
+                            <i class="fas fa-exclamation-triangle text-[#04006C] text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-[#04006C] mb-3">Report an Issue</h3>
+                        <p class="text-gray-600 mb-6">Report system outages or critical problems affecting multiple users</p>
+                        <ul class="mb-6 space-y-2">
+                            <li class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                Immediate attention
+                            </li>
+                            <li class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                Real-time updates
+                            </li>
+                            <li class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                Escalation path
+                            </li>
+                        </ul>
+                        <button class="btn-primary rounded-lg py-3 px-6 font-medium w-full">
+                            Report Problem
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team" class="bg-gray-50 py-12 md:py-16">
+            <div class="container mx-auto px-4 md:px-6">
+                <h2 class="section-title text-2xl md:text-3xl font-bold text-[#04006C]">Workforce Support Mexico Team</h2>
+                <p class="text-gray-600 mb-10 max-w-2xl">Our dedicated team of IT professionals is ready to assist you with any technical issues. With expertise across various domains, we ensure your systems run smoothly.</p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Team Member 1 -->
+                    <div class="team-card bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="relative">
+                            <div class="h-48 avatar-placeholder">
+                                <span>JD</span>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#04006C] to-transparent h-24"></div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-lg text-[#04006C]">Juan Diaz</h3>
+                            <p class="text-[#015cfe] font-medium text-sm mb-2">Team Lead</p>
+                            <p class="text-gray-600 text-sm mb-4">Network specialist with 8+ years of experience in enterprise infrastructure</p>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-[#0022af] text-white px-3 py-2 rounded-lg text-sm font-medium hover:bg-[#04006C] transition">
+                                    <i class="fas fa-envelope mr-1"></i> Contact
+                                </button>
+                                <button class="w-10 h-10 border border-[#0022af] text-[#0022af] rounded-lg flex items-center justify-center hover:bg-[#0022af] hover:text-white transition">
+                                    <i class="fas fa-user"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Member 2 -->
+                    <div class="team-card bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="relative">
+                            <div class="h-48 avatar-placeholder">
+                                <span>MR</span>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#04006C] to-transparent h-24"></div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-lg text-[#04006C]">Maria Rodriguez</h3>
+                            <p class="text-[#015cfe] font-medium text-sm mb-2">Software Specialist</p>
+                            <p class="text-gray-600 text-sm mb-4">Expert in enterprise software solutions and application deployment</p>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-[#0022af] text-white px-3 py-2 rounded-lg text-sm font-medium hover:bg-[#04006C] transition">
+                                    <i class="fas fa-envelope mr-1"></i> Contact
+                                </button>
+                                <button class="w-10 h-10 border border-[#0022af] text-[#0022af] rounded-lg flex items-center justify-center hover:bg-[#0022af] hover:text-white transition">
+                                    <i class="fas fa-user"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Member 3 -->
+                    <div class="team-card bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="relative">
+                            <div class="h-48 avatar-placeholder">
+                                <span>CL</span>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#04006C] to-transparent h-24"></div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-lg text-[#04006C]">Carlos Lopez</h3>
+                            <p class="text-[#015cfe] font-medium text-sm mb-2">Hardware Technician</p>
+                            <p class="text-gray-600 text-sm mb-4">Specialized in workstation troubleshooting and hardware repairs</p>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-[#0022af] text-white px-3 py-2 rounded-lg text-sm font-medium hover:bg-[#04006C] transition">
+                                    <i class="fas fa-envelope mr-1"></i> Contact
+                                </button>
+                                <button class="w-10 h-10 border border-[#0022af] text-[#0022af] rounded-lg flex items-center justify-center hover:bg-[#0022af] hover:text-white transition">
+                                    <i class="fas fa-user"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Member 4 -->
+                    <div class="team-card bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="relative">
+                            <div class="h-48 avatar-placeholder">
+                                <span>AG</span>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#04006C] to-transparent h-24"></div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-lg text-[#04006C]">Ana Gomez</h3>
+                            <p class="text-[#015cfe] font-medium text-sm mb-2">Security Analyst</p>
+                            <p class="text-gray-600 text-sm mb-4">Cybersecurity and compliance expert with focus on data protection</p>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-[#0022af] text-white px-3 py-2 rounded-lg text-sm font-medium hover:bg-[#04006C] transition">
+                                    <i class="fas fa-envelope mr-1"></i> Contact
+                                </button>
+                                <button class="w-10 h-10 border border-[#0022af] text-[#0022af] rounded-lg flex items-center justify-center hover:bg-[#0022af] hover:text-white transition">
+                                    <i class="fas fa-user"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Member 5 -->
+                    <div class="team-card bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="relative">
+                            <div class="h-48 avatar-placeholder">
+                                <span>RM</span>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#04006C] to-transparent h-24"></div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-lg text-[#04006C]">Roberto Martinez</h3>
+                            <p class="text-[#015cfe] font-medium text-sm mb-2">Cloud Engineer</p>
+                            <p class="text-gray-600 text-sm mb-4">AWS and Azure infrastructure specialist with DevOps expertise</p>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-[#0022af] text-white px-3 py-2 rounded-lg text-sm font-medium hover:bg-[#04006C] transition">
+                                    <i class="fas fa-envelope mr-1"></i> Contact
+                                </button>
+                                <button class="w-10 h-10 border border-[#0022af] text-[#0022af] rounded-lg flex items-center justify-center hover:bg-[#0022af] hover:text-white transition">
+                                    <i class="fas fa-user"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Member 6 -->
+                    <div class="team-card bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="relative">
+                            <div class="h-48 avatar-placeholder">
+                                <span>LT</span>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#04006C] to-transparent h-24"></div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-lg text-[#04006C]">Lucia Torres</h3>
+                            <p class="text-[#015cfe] font-medium text-sm mb-2">Help Desk Manager</p>
+                            <p class="text-gray-600 text-sm mb-4">First-line support coordination and service desk management</p>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-[#0022af] text-white px-3 py-2 rounded-lg text-sm font-medium hover:bg-[#04006C] transition">
+                                    <i class="fas fa-envelope mr-1"></i> Contact
+                                </button>
+                                <button class="w-10 h-10 border border-[#0022af] text-[#0022af] rounded-lg flex items-center justify-center hover:bg-[#0022af] hover:text-white transition">
+                                    <i class="fas fa-user"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Member 7 -->
+                    <div class="team-card bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="relative">
+                            <div class="h-48 avatar-placeholder">
+                                <span>DV</span>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#04006C] to-transparent h-24"></div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-lg text-[#04006C]">Diego Vargas</h3>
+                            <p class="text-[#015cfe] font-medium text-sm mb-2">Systems Administrator</p>
+                            <p class="text-gray-600 text-sm mb-4">Windows and Linux server management and virtualization</p>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-[#0022af] text-white px-3 py-2 rounded-lg text-sm font-medium hover:bg-[#04006C] transition">
+                                    <i class="fas fa-envelope mr-1"></i> Contact
+                                </button>
+                                <button class="w-10 h-10 border border-[#0022af] text-[#0022af] rounded-lg flex items-center justify-center hover:bg-[#0022af] hover:text-white transition">
+                                    <i class="fas fa-user"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- CTA Section -->
+    <section class="bg-gradient-to-r from-[#0022af] to-[#015cfe] py-12 md:py-16">
+        <div class="container mx-auto px-4 md:px-6 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">Need Immediate Assistance?</h2>
+            <p class="text-white text-opacity-90 mb-8 max-w-2xl mx-auto">Our team is available 24/7 to help you with any IT issues. Don't hesitate to reach out!</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button class="bg-white text-[#04006C] px-6 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition shadow-lg hover:shadow-xl">
+                    <i class="fas fa-headset mr-2"></i> Contact Support
+                </button>
+                <button class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-[#015cfe] transition">
+                    <i class="fas fa-phone-alt mr-2"></i> Call Hotline
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#04006C] text-white py-12">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-1">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-white flex items-center justify-center text-[#04006C] font-bold text-xl mr-3">IT</div>
+                        <div>
+                            <h3 class="text-xl font-bold">IT Support</h3>
+                            <p class="text-xs text-gray-300">Mexico Team</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-300 mb-4">Providing world-class IT support services to keep your business running smoothly.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-[#015cfe] transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-[#015cfe] transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-[#015cfe] transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-[#015cfe] transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-sm text-gray-300 hover:text-white transition">Support Portal</a></li>
+                        <li><a href="#" class="text-sm text-gray-300 hover:text-white transition">Knowledge Base</a></li>
+                        <li><a href="#" class="text-sm text-gray-300 hover:text-white transition">Download Resources</a></li>
+                        <li><a href="#" class="text-sm text-gray-300 hover:text-white transition">Training Materials</a></li>
+                        <li><a href="#" class="text-sm text-gray-300 hover:text-white transition">Service Status</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-sm text-gray-300 hover:text-white transition">Hardware Support</a></li>
+                        <li><a href="#" class="text-sm text-gray-300 hover:text-white transition">Software Support</a></li>
+                        <li><a href="#" class="text-sm text-gray-300 hover:text-white transition">Network Management</a></li>
+                        <li><a href="#" class="text-sm text-gray-300 hover:text-white transition">Security Services</a></li>
+                        <li><a href="#" class="text-sm text-gray-300 hover:text-white transition">Cloud Solutions</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Hours</h3>
+                    <ul class="space-y-2">
+                        <li class="text-sm text-gray-300">Monday - Friday: 8:00 AM - 8:00 PM</li>
+                        <li class="text-sm text-gray-300">Saturday: 9:00 AM - 5:00 PM</li>
+                        <li class="text-sm text-gray-300">Sunday: Emergency Support Only</li>
+                    </ul>
+                    <p class="mt-4 text-sm text-gray-300">Emergency Line: <span class="font-bold text-white">+52 55 1234 5678</span></p>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
+                <p>&copy; 2023 IT Support Mexico. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Function to load status from localStorage or set defaults
+        function loadServiceStatus() {
+            const statuses = JSON.parse(localStorage.getItem('serviceStatus')) || {
+                network: { status: 'green', text: 'Operational' },
+                email: { status: 'green', text: 'Operational' },
+                cloud: { status: 'yellow', text: 'Minor Issues' },
+                vpn: { status: 'green', text: 'Operational' },
+                print: { status: 'red', text: 'Outage' },
+                phone: { status: 'green', text: 'Operational' }
+            };
+            
+            // Update the UI with the loaded statuses
+            updateStatusUI('network', statuses.network.status, statuses.network.text);
+            updateStatusUI('email', statuses.email.status, statuses.email.text);
+            updateStatusUI('cloud', statuses.cloud.status, statuses.cloud.text);
+            updateStatusUI('vpn', statuses.vpn.status, statuses.vpn.text);
+            updateStatusUI('print', statuses.print.status, statuses.print.text);
+            updateStatusUI('phone', statuses.phone.status, statuses.phone.text);
+            
+            // Update last updated time
+            document.getElementById('lastUpdated').textContent = localStorage.getItem('lastUpdated') || 'Today, 10:30 AM';
+        }
+        
+        // Function to update the UI for a specific service
+        function updateStatusUI(service, status, text) {
+            const indicator = document.getElementById(`${service}Status`);
+            const textElement = document.getElementById(`${service}StatusText`);
+            
+            // Remove all status classes
+            indicator.classList.remove('status-green', 'status-yellow', 'status-red');
+            textElement.classList.remove('text-green-600', 'text-yellow-600', 'text-red-600');
+            
+            // Add the appropriate status class
+            indicator.classList.add(`status-${status}`);
+            
+            // Set the text and color
+            textElement.textContent = text;
+            if (status === 'green') {
+                textElement.classList.add('text-green-600');
+            } else if (status === 'yellow') {
+                textElement.classList.add('text-yellow-600');
+            } else if (status === 'red') {
+                textElement.classList.add('text-red-600');
+            }
+        }
+        
+        // Initialize the service status on page load
+        document.addEventListener('DOMContentLoaded', loadServiceStatus);
+        
+        // Add event listeners for all buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function() {
+                // You can add specific functionality here
+                // For now, just show an alert
+                alert('This feature would connect to: ' + this.textContent.trim());
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93d437b6762f5235',t:'MTc0NjgyNTM4My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
