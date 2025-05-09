@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Support Admin - Service Status Control</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #0022af;
+            --secondary: #015cfe;
+            --dark: #04006C;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--dark);
+            transform: translateY(-2px);
+        }
+        
+        .status-indicator {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        
+        .status-green {
+            background-color: #28a745;
+        }
+        
+        .status-yellow {
+            background-color: #ffc107;
+        }
+        
+        .status-red {
+            background-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-[#0022af] to-[#015cfe] text-white py-6 px-4 md:px-8">
+        <div class="container mx-auto">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-bold">IT Support Admin</h1>
+                    <p class="text-sm md:text-base opacity-80">Service Status Control Panel</p>
+                </div>
+                <div>
+                    <a href="index.html" class="bg-white text-[#04006C] px-4 py-2 rounded-md font-medium hover:bg-opacity-90 transition">
+                        View Public Page
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 md:px-8 py-8">
+        <div class="bg-white rounded-xl shadow-md p-6 md:p-8 mb-8">
+            <h2 class="text-2xl font-bold text-[#04006C] mb-6">Service Status Management</h2>
+            
+            <div class="mb-6">
+                <p class="text-gray-600 mb-4">Update the status of each service by selecting the appropriate status and providing a description.</p>
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="flex items-center">
+                        <span class="status-indicator status-green"></span>
+                        <span class="text-sm font-medium">Operational</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="status-indicator status-yellow"></span>
+                        <span class="text-sm font-medium">Minor Issues</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="status-indicator status-red"></span>
+                        <span class="text-sm font-medium">Outage</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="space-y-6">
+                <!-- Network Service -->
+                <div class="border rounded-lg p-4">
+                    <h3 class="font-bold text-lg text-[#04006C] mb-3">Network</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                            <select id="networkStatus" class="w-full border rounded-md p-2">
+                                <option value="green">Operational</option>
+                                <option value="yellow">Minor Issues</option>
+                                <option value="red">Outage</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                            <input type="text" id="networkText" class="w-full border rounded-md p-2" value="Operational">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Email Service -->
+                <div class="border rounded-lg p-4">
+                    <h3 class="font-bold text-lg text-[#04006C] mb-3">Email Services</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                            <select id="emailStatus" class="w-full border rounded-md p-2">
+                                <option value="green">Operational</option>
+                                <option value="yellow">Minor Issues</option>
+                                <option value="red">Outage</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                            <input type="text" id="emailText" class="w-full border rounded-md p-2" value="Operational">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cloud Storage -->
+                <div class="border rounded-lg p-4">
+                    <h3 class="font-bold text-lg text-[#04006C] mb-3">Cloud Storage</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                            <select id="cloudStatus" class="w-full border rounded-md p-2">
+                                <option value="green">Operational</option>
+                                <option value="yellow" selected>Minor Issues</option>
+                                <option value="red">Outage</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                            <input type="text" id="cloudText" class="w-full border rounded-md p-2" value="Minor Issues">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- VPN Access -->
+                <div class="border rounded-lg p-4">
+                    <h3 class="font-bold text-lg text-[#04006C] mb-3">VPN Access</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                            <select id="vpnStatus" class="w-full border rounded-md p-2">
+                                <option value="green">Operational</option>
+                                <option value="yellow">Minor Issues</option>
+                                <option value="red">Outage</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                            <input type="text" id="vpnText" class="w-full border rounded-md p-2" value="Operational">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Print Services -->
+                <div class="border rounded-lg p-4">
+                    <h3 class="font-bold text-lg text-[#04006C] mb-3">Print Services</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                            <select id="printStatus" class="w-full border rounded-md p-2">
+                                <option value="green">Operational</option>
+                                <option value="yellow">Minor Issues</option>
+                                <option value="red" selected>Outage</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                            <input type="text" id="printText" class="w-full border rounded-md p-2" value="Outage">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Phone System -->
+                <div class="border rounded-lg p-4">
+                    <h3 class="font-bold text-lg text-[#04006C] mb-3">Phone System</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                            <select id="phoneStatus" class="w-full border rounded-md p-2">
+                                <option value="green">Operational</option>
+                                <option value="yellow">Minor Issues</option>
+                                <option value="red">Outage</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                            <input type="text" id="phoneText" class="w-full border rounded-md p-2" value="Operational">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 flex justify-end">
+                <button id="saveChanges" class="btn-primary rounded-lg py-3 px-6 font-medium">
+                    Save Changes
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#04006C] text-white py-6 px-4 md:px-8">
+        <div class="container mx-auto text-center">
+            <p class="text-sm opacity-80">&copy; 2023 IT Support Mexico - Admin Portal</p>
+        </div>
+    </footer>
+
+    <script>
+        // Function to load status from localStorage or set defaults
+        function loadServiceStatus() {
+            const statuses = JSON.parse(localStorage.getItem('serviceStatus')) || {
+                network: { status: 'green', text: 'Operational' },
+                email: { status: 'green', text: 'Operational' },
+                cloud: { status: 'yellow', text: 'Minor Issues' },
+                vpn: { status: 'green', text: 'Operational' },
+                print: { status: 'red', text: 'Outage' },
+                phone: { status: 'green', text: 'Operational' }
+            };
+            
+            // Set the form values based on the loaded statuses
+            document.getElementById('networkStatus').value = statuses.network.status;
+            document.getElementById('networkText').value = statuses.network.text;
+            
+            document.getElementById('emailStatus').value = statuses.email.status;
+            document.getElementById('emailText').value = statuses.email.text;
+            
+            document.getElementById('cloudStatus').value = statuses.cloud.status;
+            document.getElementById('cloudText').value = statuses.cloud.text;
+            
+            document.getElementById('vpnStatus').value = statuses.vpn.status;
+            document.getElementById('vpnText').value = statuses.vpn.text;
+            
+            document.getElementById('printStatus').value = statuses.print.status;
+            document.getElementById('printText').value = statuses.print.text;
+            
+            document.getElementById('phoneStatus').value = statuses.phone.status;
+            document.getElementById('phoneText').value = statuses.phone.text;
+        }
+        
+        // Function to save the service status
+        function saveServiceStatus() {
+            const statuses = {
+                network: { 
+                    status: document.getElementById('networkStatus').value,
+                    text: document.getElementById('networkText').value
+                },
+                email: { 
+                    status: document.getElementById('emailStatus').value,
+                    text: document.getElementById('emailText').value
+                },
+                cloud: { 
+                    status: document.getElementById('cloudStatus').value,
+                    text: document.getElementById('cloudText').value
+                },
+                vpn: { 
+                    status: document.getElementById('vpnStatus').value,
+                    text: document.getElementById('vpnText').value
+                },
+                print: { 
+                    status: document.getElementById('printStatus').value,
+                    text: document.getElementById('printText').value
+                },
+                phone: { 
+                    status: document.getElementById('phoneStatus').value,
+                    text: document.getElementById('phoneText').value
+                }
+            };
+            
+            // Save to localStorage
+            localStorage.setItem('serviceStatus', JSON.stringify(statuses));
+            
+            // Update the last updated time
+            const now = new Date();
+            const formattedDate = `${now.toLocaleDateString()}, ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`;
+            localStorage.setItem('lastUpdated', formattedDate);
+            
+            // Show confirmation
+            alert('Service status updated successfully!');
+        }
+        
+        // Initialize the form on page load
+        document.addEventListener('DOMContentLoaded', loadServiceStatus);
+        
+        // Add event listener for the save button
+        document.getElementById('saveChanges').addEventListener('click', saveServiceStatus);
+    </script>
+</body>
+</html>
