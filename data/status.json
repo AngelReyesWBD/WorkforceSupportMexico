@@ -1,5 +1,0 @@
-{
-  "network": { "status": "green", "text": "Operational" },
-  "email": { "status": "yellow", "text": "Minor Issues" },
-  "cloud": { "status": "red", "text": "Outage" }
-}
