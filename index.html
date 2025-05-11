@@ -1450,64 +1450,44 @@
     </footer>
 
     <script>
-        // Function to load status from localStorage or set defaults
-        function loadServiceStatus() {
-            const statuses = JSON.parse(localStorage.getItem('serviceStatus')) || {
-                network: { status: 'green', text: 'Operational' },
-                email: { status: 'green', text: 'Operational' },
-                cloud: { status: 'yellow', text: 'Minor Issues' },
-                vpn: { status: 'green', text: 'Operational' },
-                print: { status: 'red', text: 'Outage' },
-                phone: { status: 'green', text: 'Operational' }
-            };
-            
-            // Update the UI with the loaded statuses
-            updateStatusUI('network', statuses.network.status, statuses.network.text);
-            updateStatusUI('email', statuses.email.status, statuses.email.text);
-            updateStatusUI('cloud', statuses.cloud.status, statuses.cloud.text);
-            updateStatusUI('vpn', statuses.vpn.status, statuses.vpn.text);
-            updateStatusUI('print', statuses.print.status, statuses.print.text);
-            updateStatusUI('phone', statuses.phone.status, statuses.phone.text);
-            
-            // Update last updated time
-            document.getElementById('lastUpdated').textContent = localStorage.getItem('lastUpdated') || 'Today, 10:30 AM';
+  const estadoClases = {
+    operational: {
+      texto: "Operational",
+      claseTexto: "text-green-600",
+      claseIndicador: "status-green"
+    },
+    minor: {
+      texto: "Minor Issues",
+      claseTexto: "text-yellow-600",
+      claseIndicador: "status-yellow"
+    },
+    outage: {
+      texto: "Outage",
+      claseTexto: "text-red-600",
+      claseIndicador: "status-red"
+    }
+  };
+
+  fetch('servicios.json') // ajusta la ruta si tu JSON está en una carpeta como 'data/servicios.json'
+    .then(response => response.json())
+    .then(servicios => {
+      servicios.forEach(servicio => {
+        const textoEstado = document.getElementById(`${servicio.id}StatusText`);
+        const indicador = document.getElementById(`${servicio.id}Status`);
+
+        const estado = estadoClases[servicio.estado];
+
+        if (textoEstado && indicador && estado) {
+          textoEstado.textContent = estado.texto;
+          textoEstado.className = `text-sm font-medium ${estado.claseTexto}`;
+          indicador.className = `status-indicator ${estado.claseIndicador}`;
         }
-        
-        // Function to update the UI for a specific service
-        function updateStatusUI(service, status, text) {
-            const indicator = document.getElementById(`${service}Status`);
-            const textElement = document.getElementById(`${service}StatusText`);
-            
-            // Remove all status classes
-            indicator.classList.remove('status-green', 'status-yellow', 'status-red');
-            textElement.classList.remove('text-green-600', 'text-yellow-600', 'text-red-600');
-            
-            // Add the appropriate status class
-            indicator.classList.add(`status-${status}`);
-            
-            // Set the text and color
-            textElement.textContent = text;
-            if (status === 'green') {
-                textElement.classList.add('text-green-600');
-            } else if (status === 'yellow') {
-                textElement.classList.add('text-yellow-600');
-            } else if (status === 'red') {
-                textElement.classList.add('text-red-600');
-            }
-        }
-        
-       
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93d437b6762f5235',t:'MTc0NjgyNTM4My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+      });
+
+      // Actualiza hora
+      const lastUpdated = document.getElementById('lastUpdated');
+      const ahora = new Date();
+      lastUpdated.textContent = ahora.toLocaleString();
+    });
+</script>
 </html>
