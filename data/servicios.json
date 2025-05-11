@@ -1,0 +1,38 @@
+[
+  {
+    "id": "network",
+    "nombre": "Network",
+    "descripcion": "Internet & Intranet",
+    "estado": "operational"
+  },
+  {
+    "id": "email",
+    "nombre": "Email Services",
+    "descripcion": "Outlook & Exchange",
+    "estado": "operational"
+  },
+  {
+    "id": "cloud",
+    "nombre": "Cloud Storage",
+    "descripcion": "OneDrive & SharePoint",
+    "estado": "minor"
+  },
+  {
+    "id": "vpn",
+    "nombre": "VPN Access",
+    "descripcion": "Remote Connection",
+    "estado": "operational"
+  },
+  {
+    "id": "print",
+    "nombre": "Print Services",
+    "descripcion": "Network Printers",
+    "estado": "outage"
+  },
+  {
+    "id": "phone",
+    "nombre": "Phone System",
+    "descripcion": "VoIP & Conference",
+    "estado": "operational"
+  }
+]
