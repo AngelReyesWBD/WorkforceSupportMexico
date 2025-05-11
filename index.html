@@ -1468,7 +1468,7 @@
     }
   };
 
-  fetch('servicios.json') // ajusta la ruta si tu JSON está en una carpeta como 'data/servicios.json'
+fetch('data/servicios.json')
     .then(response => response.json())
     .then(servicios => {
       servicios.forEach(servicio => {
