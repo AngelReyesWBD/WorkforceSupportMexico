@@ -1449,7 +1449,7 @@
         </div>
     </footer>
 
-    <script>
+   <script>
   const estadoClases = {
     operational: {
       texto: "Operational",
@@ -1468,15 +1468,17 @@
     }
   };
 
-fetch('data/servicios.json')
-    .then(response => response.json())
+  fetch('data/servicios.json')
+    .then(response => {
+      if (!response.ok) throw new Error('Error al cargar JSON');
+      return response.json();
+    })
     .then(servicios => {
+      console.log("Servicios cargados:", servicios); // 🔍
       servicios.forEach(servicio => {
         const textoEstado = document.getElementById(`${servicio.id}StatusText`);
         const indicador = document.getElementById(`${servicio.id}Status`);
-
         const estado = estadoClases[servicio.estado];
-
         if (textoEstado && indicador && estado) {
           textoEstado.textContent = estado.texto;
           textoEstado.className = `text-sm font-medium ${estado.claseTexto}`;
@@ -1484,10 +1486,11 @@ fetch('data/servicios.json')
         }
       });
 
-      // Actualiza hora
       const lastUpdated = document.getElementById('lastUpdated');
-      const ahora = new Date();
-      lastUpdated.textContent = ahora.toLocaleString();
+      lastUpdated.textContent = new Date().toLocaleString();
+    })
+    .catch(error => {
+      console.error("Error al cargar servicios.json:", error);
     });
 </script>
 </html>
