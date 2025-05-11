@@ -27,7 +27,7 @@
     "id": "print",
     "nombre": "Print Services",
     "descripcion": "Network Printers",
-    "estado": "outage"
+    "estado": "operational"
   },
   {
     "id": "phone",
