@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0022af;
+      --secondary: #015cfe;
+      --dark: #04006C;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    /* Colores base */
+    .bg-primary { background-color: var(--primary); }
+    .bg-secondary { background-color: var(--secondary); }
+    .bg-dark { background-color: var(--dark); }
+    .text-primary { color: var(--primary); }
+    .text-secondary { color: var(--secondary); }
+    .text-dark { color: var(--dark); }
+    
+    /* Colores de semáforo */
+    .status-operational { color: var(--success); }
+    .status-issues { color: var(--warning); }
+    .status-outage { color: var(--danger); }
+    
+    .bg-status-operational { background-color: var(--success); }
+    .bg-status-issues { background-color: var(--warning); }
+    .bg-status-outage { background-color: var(--danger); }
+    
+    /* Animaciones */
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slideIn {
+      from { transform: translateX(-20px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 5px rgba(1, 92, 254, 0.5); }
+      50% { box-shadow: 0 0 20px rgba(1, 92, 254, 0.8); }
+    }
+    
+    .animate-pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    .animate-fade-in {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+    
+    .animate-slide-in {
+      animation: slideIn 0.4s ease-out forwards;
+    }
+    
+    .animate-glow {
+      animation: glow 2s infinite;
+    }
+    
+    .card {
+      transition: all 0.3s ease;
+      animation: fadeIn 0.6s ease-out forwards;
+      opacity: 0;
+    }
+    
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.2s; }
+    .card:nth-child(3) { animation-delay: 0.3s; }
+    .card:nth-child(4) { animation-delay: 0.4s; }
+    .card:nth-child(5) { animation-delay: 0.5s; }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 34, 175, 0.1);
+    }
+    
+    .service-icon {
+      background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+      transition: all 0.3s ease;
+    }
+    
+    .card:hover .service-icon {
+      transform: rotate(360deg);
+    }
+    
+    .status-indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-save {
+      background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-save:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 34, 175, 0.2);
+    }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, #f0f4ff 0%, #e6edff 100%);
+      transition: all 0.3s ease;
+    }
+    
+    .card:hover .gradient-bg {
+      background: linear-gradient(135deg, #e6edff 0%, #d1dcff 100%);
+    }
+    
+    /* Estilo para los selects */
+    select.statusSelect {
+      transition: all 0.3s ease;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%230022af'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      background-size: 1rem;
+      padding-right: 2.5rem;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+    
+    .header-animation {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+    
+    .status-badge {
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      margin-left: 10px;
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+<body class="bg-[#f5f8ff] min-h-screen text-[#04006C]">
+  <div class="container mx-auto py-10 px-4 max-w-6xl">
+    <div class="bg-white rounded-2xl shadow-xl p-8 mb-8 border border-[#e6edff]">
+      <div class="flex flex-col items-center justify-center mb-10 header-animation">
+        <div class="service-icon rounded-full p-4 mb-4 shadow-lg animate-pulse">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        </div>
+        <h1 class="text-4xl font-bold text-[#04006C] mb-2">Administration Panel</h1>
+        <div class="h-1 w-20 bg-secondary rounded-full mb-4 animate-glow"></div>
+        <p class="text-gray-600 text-center max-w-2xl">
+Monitor and update the status of platform services in real time
+        </p>
+      </div>
+
+      <div id="services" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <!-- Network -->
+        <div class="card bg-white p-6 rounded-xl shadow-lg border-l-4 border-[#0022af]" data-service="network">
+          <div class="flex items-center mb-6">
+            <div class="service-icon p-3 rounded-lg mr-4 shadow-md">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9" />
+          </svg>
+            </div>
+            <h2 class="text-xl font-semibold text-[#04006C]">Network</h2>
+            <div class="status-badge ml-auto bg-green-100 text-green-800">
+              <span class="status-indicator bg-status-operational"></span>
+              <span class="status-text">Operational</span>
+            </div>
+          </div>
+          <div class="gradient-bg p-4 rounded-lg mb-4">
+            <label class="block mb-2 text-sm font-medium text-[#04006C]">State:</label>
+            <select class="statusSelect border border-[#d1dcff] p-3 rounded-lg w-full focus:ring-2 focus:ring-[#015cfe] focus:border-[#015cfe] transition-all">
+              <option value="operational">Operational</option>
+              <option value="issues">Minor Issues</option>
+              <option value="outage">Outage</option>
+            </select>
+          </div>
+          <div class="gradient-bg p-4 rounded-lg">
+            <label class="block mb-2 text-sm font-medium text-[#04006C]">Description:</label>
+            <input type="text" class="statusText border border-[#d1dcff] p-3 rounded-lg w-full focus:ring-2 focus:ring-[#015cfe] focus:border-[#015cfe] transition-all" value="Operational" />
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="card bg-white p-6 rounded-xl shadow-lg border-l-4 border-[#015cfe]" data-service="email">
+          <div class="flex items-center mb-6">
+            <div class="service-icon p-3 rounded-lg mr-4 shadow-md">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h2 class="text-xl font-semibold text-[#04006C]">Email</h2>
+            <div class="status-badge ml-auto bg-green-100 text-green-800">
+              <span class="status-indicator bg-status-operational"></span>
+              <span class="status-text">Operational</span>
+            </div>
+          </div>
+          <div class="gradient-bg p-4 rounded-lg mb-4">
+            <label class="block mb-2 text-sm font-medium text-[#04006C]">State:</label>
+            <select class="statusSelect border border-[#d1dcff] p-3 rounded-lg w-full focus:ring-2 focus:ring-[#015cfe] focus:border-[#015cfe] transition-all">
+              <option value="operational">Operational</option>
+              <option value="issues">Minor Issues</option>
+              <option value="outage">Outage</option>
+            </select>
+          </div>
+          <div class="gradient-bg p-4 rounded-lg">
+            <label class="block mb-2 text-sm font-medium text-[#04006C]">Texto de estado:</label>
+            <input type="text" class="statusText border border-[#d1dcff] p-3 rounded-lg w-full focus:ring-2 focus:ring-[#015cfe] focus:border-[#015cfe] transition-all" value="Operational" />
+          </div>
+        </div>
+
+        <!-- Cloud -->
+        <div class="card bg-white p-6 rounded-xl shadow-lg border-l-4 border-[#0022af]" data-service="cloud">
+          <div class="flex items-center mb-6">
+            <div class="service-icon p-3 rounded-lg mr-4 shadow-md">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+              </svg>
+            </div>
+            <h2 class="text-xl font-semibold text-[#04006C]">Cloud Storage</h2>
+            <div class="status-badge ml-auto bg-green-100 text-green-800">
+              <span class="status-indicator bg-status-operational"></span>
+              <span class="status-text">Operational</span>
+            </div>
+          </div>
+          <div class="gradient-bg p-4 rounded-lg mb-4">
+            <label class="block mb-2 text-sm font-medium text-[#04006C]">State:</label>
+            <select class="statusSelect border border-[#d1dcff] p-3 rounded-lg w-full focus:ring-2 focus:ring-[#015cfe] focus:border-[#015cfe] transition-all">
+              <option value="operational">Operational</option>
+              <option value="issues">Minor Issues</option>
+              <option value="outage">Outage</option>
+            </select>
+          </div>
+          <div class="gradient-bg p-4 rounded-lg">
+            <label class="block mb-2 text-sm font-medium text-[#04006C]">Description:</label>
+            <input type="text" class="statusText border border-[#d1dcff] p-3 rounded-lg w-full focus:ring-2 focus:ring-[#015cfe] focus:border-[#015cfe] transition-all" value="Operational" />
+          </div>
+        </div>
+
+        <!-- VPN -->
+        <div class="card bg-white p-6 rounded-xl shadow-lg border-l-4 border-[#015cfe]" data-service="vpn">
+          <div class="flex items-center mb-6">
+            <div class="service-icon p-3 rounded-lg mr-4 shadow-md">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            <h2 class="text-xl font-semibold text-[#04006C]">VPN</h2>
+            <div class="status-badge ml-auto bg-green-100 text-green-800">
+              <span class="status-indicator bg-status-operational"></span>
+              <span class="status-text">Operational</span>
+            </div>
+          </div>
+          <div class="gradient-bg p-4 rounded-lg mb-4">
+            <label class="block mb-2 text-sm font-medium text-[#04006C]">State:</label>
+            <select class="statusSelect border border-[#d1dcff] p-3 rounded-lg w-full focus:ring-2 focus:ring-[#015cfe] focus:border-[#015cfe] transition-all">
+              <option value="operational">Operational</option>
+              <option value="issues">Minor Issues</option>
+              <option value="outage">Outage</option>
+            </select>
+          </div>
+          <div class="gradient-bg p-4 rounded-lg">
+            <label class="block mb-2 text-sm font-medium text-[#04006C]">Description:</label>
+            <input type="text" class="statusText border border-[#d1dcff] p-3 rounded-lg w-full focus:ring-2 focus:ring-[#015cfe] focus:border-[#015cfe] transition-all" value="Operational" />
+          </div>
+        </div>
+
+        <!-- Print -->
+        <div class="card bg-white p-6 rounded-xl shadow-lg border-l-4 border-[#0022af]" data-service="print">
+          <div class="flex items-center mb-6">
+            <div class="service-icon p-3 rounded-lg mr-4 shadow-md">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+              </svg>
+            </div>
+            <h2 class="text-xl font-semibold text-[#04006C]">Printer</h2>
+            <div class="status-badge ml-auto bg-green-100 text-green-800">
+              <span class="status-indicator bg-status-operational"></span>
+              <span class="status-text">Operational</span>
+            </div>
+          </div>
+          <div class="gradient-bg p-4 rounded-lg mb-4">
+            <label class="block mb-2 text-sm font-medium text-[#04006C]">State:</label>
+            <select class="statusSelect border border-[#d1dcff] p-3 rounded-lg w-full focus:ring-2 focus:ring-[#015cfe] focus:border-[#015cfe] transition-all">
+              <option value="operational">Operational</option>
+              <option value="issues">Minor Issues</option>
+              <option value="outage">Outage</option>
+            </select>
+          </div>
+          <div class="gradient-bg p-4 rounded-lg">
+            <label class="block mb-2 text-sm font-medium text-[#04006C]">Description:</label>
+            <input type="text" class="statusText border border-[#d1dcff] p-3 rounded-lg w-full focus:ring-2 focus:ring-[#015cfe] focus:border-[#015cfe] transition-all" value="Operational" />
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-12">
+        <button id="saveButton" class="btn-save text-white font-semibold px-10 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[#015cfe] focus:ring-opacity-50">
+          <div class="flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+            </svg>
+            Guardar Cambios
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <script src="firebase-config.js"></script>
+
+  <!-- Script -->
+  <script>
+    document.getElementById('saveButton').addEventListener('click', () => {
+      const now = new Date();
+      const timeString = `Hoy, ${now.toLocaleTimeString('es-MX', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+      })}`;
+
+      const serviceElements = document.querySelectorAll('[data-service]');
+      const services = {};
+
+      serviceElements.forEach(el => {
+        const id = el.dataset.service;
+        const status = el.querySelector('.statusSelect').value;
+        const text = el.querySelector('.statusText').value;
+        services[id] = { status, text };
+      });
+
+      firebase.database().ref("serviceStatus").set({
+        lastUpdated: timeString,
+        services: services
+      })
+      .then(() => alert("Cambios guardados exitosamente."))
+      .catch(err => alert("Error: " + err));
+    });
+    
+    // Actualizar los indicadores de estado cuando cambie el select
+    document.querySelectorAll('.statusSelect').forEach(select => {
+      select.addEventListener('change', function() {
+        const card = this.closest('[data-service]');
+        const statusBadge = card.querySelector('.status-badge');
+        const statusIndicator = card.querySelector('.status-indicator');
+        const statusText = card.querySelector('.status-text');
+        
+        // Actualizar según el valor seleccionado
+        if (this.value === 'operational') {
+          statusBadge.className = 'status-badge ml-auto bg-green-100 text-green-800';
+          statusIndicator.className = 'status-indicator bg-status-operational';
+          statusText.textContent = 'Operational';
+        } else if (this.value === 'issues') {
+          statusBadge.className = 'status-badge ml-auto bg-yellow-100 text-yellow-800';
+          statusIndicator.className = 'status-indicator bg-status-issues';
+          statusText.textContent = 'Minor Issues';
+        } else if (this.value === 'outage') {
+          statusBadge.className = 'status-badge ml-auto bg-red-100 text-red-800';
+          statusIndicator.className = 'status-indicator bg-status-outage';
+          statusText.textContent = 'Outage';
+        }
+        
+        // Actualizar el campo de texto
+        card.querySelector('.statusText').value = statusText.textContent;
+      });
+    });
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93e60a7543e69a5d',t:'MTc0NzAxMjI3My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
