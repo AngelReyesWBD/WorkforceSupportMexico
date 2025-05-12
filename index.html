@@ -323,7 +323,7 @@
        
     </style>
     <style>
-         <style>
+      
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
     
     body {
@@ -393,7 +393,7 @@
     
     
   </style>
-    </style>
+   
 
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -917,7 +917,7 @@
 
     
 
-   <img src="warner.png" alt="Icono" class="tech-icon w-32 h-32 bottom-0 right-[5%] absolute">
+   <img src="tecno.png" alt="Icono" class="tech-icon w-32 h-32 bottom-0 right-[5%] absolute">
 
     
    
@@ -941,146 +941,146 @@
           </div>
         </div>
     </section>
-<!-- Service Status Section -->
-        <section id="status" class="bg-gray-50 py-12 md:py-16 mb-16">
-            <div class="container mx-auto px-4 md:px-6">
-                <div class="flex justify-between items-center mb-8">
-                    <h2 class="section-title text-2xl md:text-3xl font-bold text-[#04006C]">Service Status</h2>
-                    
-                    <span class="text-sm text-gray-500">Last updated: <span id="lastUpdated">Today, 10:30 AM</span></span>
-                </div>
-              
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                <!-- Network -->
-                <div class="service-card operational bg-white rounded-xl p-5 flex items-center justify-between shadow-sm hover:shadow-md transition relative overflow-hidden">
-                    <div class="flex items-center">
-                        <div class="service-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#0022af]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9" />
-                            </svg>
-                        </div>
-                        <div>
-                            <span class="font-semibold text-[#04006C]">Network</span>
-                            <p class="text-xs text-gray-500 mt-1">Internet & Intranet</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center">
-                        <span class="status-indicator status-green mr-2"></span>
-                        <span class="text-sm font-medium text-green-600" id="networkStatusText">Operational</span>
-                    </div>
-                </div>
-                
-                <!-- Email Services -->
-                <div class="service-card operational bg-white rounded-xl p-5 flex items-center justify-between shadow-sm hover:shadow-md transition relative overflow-hidden">
-                    <div class="flex items-center">
-                        <div class="service-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#0022af]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                        </div>
-                        <div>
-                            <span class="font-semibold text-[#04006C]">Email Services</span>
-                            <p class="text-xs text-gray-500 mt-1">Outlook & Exchange</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center">
-                        <span class="status-indicator status-green mr-2"></span>
-                        <span class="text-sm font-medium text-green-600" id="emailStatusText">Operational</span>
-                    </div>
-                </div>
-                
-                <!-- Cloud Storage -->
-                <div class="service-card issues bg-white rounded-xl p-5 flex items-center justify-between shadow-sm hover:shadow-md transition relative overflow-hidden">
-                    <div class="flex items-center">
-                        <div class="service-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#0022af]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+<body class="bg-gray-50 min-h-screen text-[#04006C]">
+  <div class="container mx-auto py-10 px-4">
+    <h1 class="section-title text-3xl font-bold text-center mb-6">Service Status</h1>
+    <p class="text-center text-sm text-gray-500 mb-8">
+      Last updated: Today <span id="lastUpdated">Cargando...</span>
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="serviceCards">
+      <!-- Network -->
+      <div class="service-card bg-white rounded-xl p-5 flex items-center justify-between shadow-sm hover:shadow-md transition" data-service="network">
+        <div class="flex items-center gap-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#0022af]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9" />
+          </svg>
+          <div>
+            <span class="font-semibold">Network</span>
+            <p class="text-xs text-gray-500">Internet & Intranet</p>
+          </div>
+        </div>
+        <div class="flex items-center">
+          <span class="status-indicator w-3 h-3 rounded-full mr-2"></span>
+          <span class="text-sm font-medium" id="networkStatusText">Cargando...</span>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="service-card bg-white rounded-xl p-5 flex items-center justify-between shadow-sm hover:shadow-md transition" data-service="email">
+        <div class="flex items-center gap-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#0022af]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          <div>
+            <span class="font-semibold">Email Services</span>
+            <p class="text-xs text-gray-500">Outlook & Exchange</p>
+          </div>
+        </div>
+        <div class="flex items-center">
+          <span class="status-indicator w-3 h-3 rounded-full mr-2"></span>
+          <span class="text-sm font-medium" id="emailStatusText">Cargando...</span>
+        </div>
+      </div>
+
+      <!-- Cloud -->
+      <div class="service-card bg-white rounded-xl p-5 flex items-center justify-between shadow-sm hover:shadow-md transition" data-service="cloud">
+        <div class="flex items-center gap-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#0022af]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
                             </svg>
-                        </div>
-                        <div>
-                            <span class="font-semibold text-[#04006C]">Cloud Storage</span>
-                            <p class="text-xs text-gray-500 mt-1">OneDrive & SharePoint</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center">
-                        <span class="status-indicator status-yellow mr-2"></span>
-                        <span class="text-sm font-medium text-yellow-600" id="cloudStatusText">Minor Issues</span>
-                    </div>
-                </div>
-                
-                <!-- VPN Access -->
-                <div class="service-card operational bg-white rounded-xl p-5 flex items-center justify-between shadow-sm hover:shadow-md transition relative overflow-hidden">
-                    <div class="flex items-center">
-                        <div class="service-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#0022af]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div>
+            <span class="font-semibold">Cloud Storage</span>
+            <p class="text-xs text-gray-500">OneDrive & SharePoint</p>
+          </div>
+        </div>
+        <div class="flex items-center">
+          <span class="status-indicator w-3 h-3 rounded-full mr-2"></span>
+          <span class="text-sm font-medium" id="cloudStatusText">Cargando...</span>
+        </div>
+      </div>
+
+      <!-- VPN -->
+      <div class="service-card bg-white rounded-xl p-5 flex items-center justify-between shadow-sm hover:shadow-md transition" data-service="vpn">
+        <div class="flex items-center gap-3">
+           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#0022af]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                             </svg>
-                        </div>
-                        <div>
-                            <span class="font-semibold text-[#04006C]">VPN Access</span>
-                            <p class="text-xs text-gray-500 mt-1">Remote Connection</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center">
-                        <span class="status-indicator status-green mr-2"></span>
-                        <span class="text-sm font-medium text-green-600" id="vpnStatusText">Operational</span>
-                    </div>
-                </div>
-                
-                <!-- Print Services -->
-                <div class="service-card down bg-white rounded-xl p-5 flex items-center justify-between shadow-sm hover:shadow-md transition relative overflow-hidden">
-                    <div class="flex items-center">
-                        <div class="service-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#0022af]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-                            </svg>
-                        </div>
-                        <div>
-                            <span class="font-semibold text-[#04006C]">Print Services</span>
-                            <p class="text-xs text-gray-500 mt-1">Network Printers</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center">
-                        <span class="status-indicator status-red mr-2"></span>
-                        <span class="text-sm font-medium text-red-600" id="printStatusText">Outage</span>
-                    </div>
-                </div>
-                
-                <!-- Databases -->
-                <div class="service-card operational bg-white rounded-xl p-5 flex items-center justify-between shadow-sm hover:shadow-md transition relative overflow-hidden">
-                    <div class="flex items-center">
-                        <div class="service-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#0022af]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
-                            </svg>
-                        </div>
-                        <div>
-                            <span class="font-semibold text-[#04006C]">Databases</span>
-                            <p class="text-xs text-gray-500 mt-1">SQL & NoSQL</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center">
-                        <span class="status-indicator status-green mr-2"></span>
-                        <span class="text-sm font-medium text-green-600">Operational</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="mt-8 flex justify-end items-center">
-                <div class="text-sm text-[#015cfe] flex items-center">
-                    <span class="inline-block w-2 h-2 bg-[#015cfe] rounded-full mr-2 animate-ping"></span>
-                    Monitorizando en tiempo real
-                </div>
-            </div>
+          <div>
+            <span class="font-semibold">VPN</span>
+            <p class="text-xs text-gray-500">Acceso remoto seguro</p>
+          </div>
         </div>
+        <div class="flex items-center">
+          <span class="status-indicator w-3 h-3 rounded-full mr-2"></span>
+          <span class="text-sm font-medium" id="vpnStatusText">Cargando...</span>
+        </div>
+      </div>
+
+      <!-- Impresoras -->
+      <div class="service-card bg-white rounded-xl p-5 flex items-center justify-between shadow-sm hover:shadow-md transition" data-service="print">
+        <div class="flex items-center gap-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#0022af]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2m-4 0v4H10v-4h4z" />
+          </svg>
+          <div>
+            <span class="font-semibold">Impresoras</span>
+            <p class="text-xs text-gray-500">Red de impresión interna</p>
+          </div>
+        </div>
+        <div class="flex items-center">
+          <span class="status-indicator w-3 h-3 rounded-full mr-2"></span>
+          <span class="text-sm font-medium" id="printStatusText">Cargando...</span>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <script src="firebase-config.js"></script>
+
+  <!-- Estado dinámico -->
+  <script>
+    const statusStyles = {
+      operational: ['bg-green-500', 'text-green-600'],
+      issues: ['bg-yellow-400', 'text-yellow-600'],
+      outage: ['bg-red-500', 'text-red-600'],
+    };
+
+    firebase.database().ref("serviceStatus").on("value", snapshot => {
+      const data = snapshot.val();
+      if (!data) return;
+
+      document.getElementById("lastUpdated").textContent = data.lastUpdated;
+
+      for (const key in data.services) {
+        const { status, text } = data.services[key];
+        const card = document.querySelector(`.service-card[data-service="${key}"]`);
+        const statusText = document.getElementById(`${key}StatusText`);
+        const indicator = card?.querySelector('.status-indicator');
+
+        if (card && statusText && indicator) {
+          // Reset classes
+card.classList.remove('operational', 'issues', 'down');
+            card.classList.add(status === "outage" ? "down" : status);
+
+
+          statusText.textContent = text;
+          statusText.className = `text-sm font-medium ${statusStyles[status][1]}`;
+          indicator.className = `status-indicator w-3 h-3 rounded-full mr-2 ${statusStyles[status][0]}`;
+        }
+      }
+    });
+  </script>
         </section>
     <!-- Main Content -->
 <main class="py-2 md:py-5">
         <!-- Need IT Support Section -->
         <section id="support" class="container mx-auto px-4 md:px-6 mb-16">
             <h2 class="section-title text-2xl md:text-3xl font-bold text-[#04006C]">Contact Support</h2>
+
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="card bg-white shadow-md p-6 flex flex-col items-center text-center">
@@ -1429,7 +1429,7 @@
                     <ul class="space-y-2">
                          <li><a href="https://wbd.service-now.com/one?id=emp_taxonomy_topic_it&topic_id=6e465fe61b84da10f27a43b1b24bcbd4&in_context=true" class="text-sm hover:text-[#015cfe] transition">Support Portal</a></li>
                         <li><a href="https://wbd.service-now.com/one?id=emp_taxonomy_topic_it&topic_id=e0642fee1b88da10f27a43b1b24bcbc2&in_context=true" class="text-sm hover:text-[#015cfe] transition">Knowledge Base</a></li>
-                        <li><a href="Onboarding IT 2025.pdf" class="text-sm hover:text-[#015cfe] transition">Download Onboarding Presentation</a></li>
+                        <li><a href="Onboarding IT 2025.pdf" class="text-sm hover:text-[#015cfe] transition">Onboarding Presentation</a></li>
                         <li><a href="https://wbd.service-now.com/one?id=emp_taxonomy_topic_communications&topic_id=c69097811bc916508d722f4b234bcb06" class="text-sm hover:text-[#015cfe] transition">Security and Privacy</a></li>
                     </ul>
                 </div>
@@ -1449,48 +1449,61 @@
         </div>
     </footer>
 
-   <script>
-  const estadoClases = {
-    operational: {
-      texto: "Operational",
-      claseTexto: "text-green-600",
-      claseIndicador: "status-green"
-    },
-    minor: {
-      texto: "Minor Issues",
-      claseTexto: "text-yellow-600",
-      claseIndicador: "status-yellow"
-    },
-    outage: {
-      texto: "Outage",
-      claseTexto: "text-red-600",
-      claseIndicador: "status-red"
-    }
-  };
 
-  fetch('data/servicios.json')
-    .then(response => {
-      if (!response.ok) throw new Error('Error al cargar JSON');
-      return response.json();
-    })
-    .then(servicios => {
-      console.log("Servicios cargados:", servicios); // 🔍
-      servicios.forEach(servicio => {
-        const textoEstado = document.getElementById(`${servicio.id}StatusText`);
-        const indicador = document.getElementById(`${servicio.id}Status`);
-        const estado = estadoClases[servicio.estado];
-        if (textoEstado && indicador && estado) {
-          textoEstado.textContent = estado.texto;
-          textoEstado.className = `text-sm font-medium ${estado.claseTexto}`;
-          indicador.className = `status-indicator ${estado.claseIndicador}`;
-        }
-      });
+<!-- SDK Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
-      const lastUpdated = document.getElementById('lastUpdated');
-      lastUpdated.textContent = new Date().toLocaleString();
-    })
-    .catch(error => {
-      console.error("Error al cargar servicios.json:", error);
+<!-- Tu configuración -->
+<script src="firebase-config.js"></script>
+
+<!-- Script para mostrar el estado de los servicios -->
+<script>
+  const db = firebase.database();
+
+  // Referencias a cada servicio
+  const networkRef = db.ref("network");
+  const emailRef = db.ref("email");
+  const cloudRef = db.ref("cloudStorage");
+  const vpnRef = db.ref("vpn");
+  const printRef = db.ref("print");
+
+  // Función para actualizar el estado de un servicio
+  function updateServiceStatus(ref, elementId, statusTextId) {
+    ref.on("value", (snapshot) => {
+      const status = snapshot.val();
+      const statusElement = document.getElementById(elementId);
+      const statusTextElement = document.getElementById(statusTextId);
+
+      if (status === "verde") {
+        statusElement.className = "status-indicator status-green";
+        statusTextElement.textContent = "Operational";
+        statusTextElement.className = "text-sm font-medium text-green-600";
+      } else if (status === "amarillo") {
+        statusElement.className = "status-indicator status-yellow";
+        statusTextElement.textContent = "Minor Issues";
+        statusTextElement.className = "text-sm font-medium text-yellow-600";
+      } else if (status === "rojo") {
+        statusElement.className = "status-indicator status-red";
+        statusTextElement.textContent = "Outage";
+        statusTextElement.className = "text-sm font-medium text-red-600";
+      } else {
+        statusElement.className = "status-indicator status-gray";
+        statusTextElement.textContent = "Unknown Status";
+        statusTextElement.className = "text-sm font-medium text-gray-600";
+      }
     });
+  }
+
+  // Actualizar estado de cada servicio
+  updateServiceStatus(networkRef, "networkStatusText", "networkStatusText");
+  updateServiceStatus(emailRef, "emailStatusText", "emailStatusText");
+  updateServiceStatus(cloudRef, "cloudStatusText", "cloudStatusText");
+  updateServiceStatus(vpnRef, "vpnStatusText", "vpnStatusText");
+  updateServiceStatus(printRef, "printStatusText", "printStatusText");
 </script>
-</html>
+
+
+
+
+    </html>
